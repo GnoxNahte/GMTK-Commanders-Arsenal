@@ -2,15 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAI : MonoBehaviour
+public class HeroAI : MonoBehaviour
 {
     [SerializeField] private int avoidanceRadius;
     [SerializeField] private ContactFilter2D contactFilter;
 
-    private PlayerControls playerMovement;
+    private HeroControls controls;
 
     [SerializeField] [ReadOnly]
     private List<Collider2D> enemies;
+
+    // Singleton
+    // Use it so I can implement stuff fast since in game jam
+    public static HeroAI instance { get; private set; }
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            Debug.LogError("More than 1 SingletonClass. Destroying this. Name: " + name);
+            return;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +34,7 @@ public class PlayerAI : MonoBehaviour
         enemies = new List<Collider2D>(50);
 
         // Caching
-        playerMovement = GetComponent<PlayerControls>();
+        controls = GetComponent<HeroControls>();
     }
 
     // Update is called once per frame
@@ -32,12 +48,9 @@ public class PlayerAI : MonoBehaviour
         {
             Vector2 offset = transform.position - enemy.transform.position;
             moveDir += offset / Mathf.Max(offset.sqrMagnitude, 1);
-            print("OFfset: " + offset);
         }
 
-        print("Move Dir: " + moveDir);
-
-        playerMovement.SetMoveDir(moveDir);
+        controls.SetMoveDir(moveDir);
     }
 
     private void OnDrawGizmos()

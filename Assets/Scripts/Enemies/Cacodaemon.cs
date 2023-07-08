@@ -23,7 +23,7 @@ public class Cacodaemon : BaseEnemyControls
     {
         base.Update();
 
-        Vector2 offset = PlayerAI.instance.transform.position - transform.position;
+        Vector2 offset = HeroAI.instance.transform.position - transform.position;
 
         // Simple follow 
         SetMoveDir(offset);

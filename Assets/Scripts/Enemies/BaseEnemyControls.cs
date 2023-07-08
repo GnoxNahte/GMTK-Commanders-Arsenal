@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Similar to PlayerControls.cs but customised for enemies
+// Similar to HeroControls.cs but customised for enemies
 public class BaseEnemyControls : MonoBehaviour
 {
     [SerializeField]

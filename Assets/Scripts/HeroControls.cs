@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControls : MonoBehaviour
+public class HeroControls : MonoBehaviour
 {
     public enum AttackType
     {
         NotAttacking,
-        Attack1,
-        Attack2, 
-        Attack3,
+        Attack1, // Combo attack
         Spin,
         JumpFwd,
         Cast1,
@@ -47,16 +45,17 @@ public class PlayerControls : MonoBehaviour
 
     public void SetAttack(AttackType type)
     {
-        animator.SetInteger(animId_AttackType, (int)type);
+        currAttackType = type;
+        animator.SetInteger(animId_AttackType, (int)currAttackType);
     }
 
-    public void OnPlayerDead()
+    public void OnHeroDead()
     {
         animator.SetBool(animId_IsDead, true);
     }
-
     #endregion
 
+    #region Unity Functions
     // Start is called before the first frame update
     void Start()
     {
@@ -91,8 +90,6 @@ public class PlayerControls : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + moveDir * moveSpeed * Time.fixedDeltaTime);
-        //transform.position = rb.position + moveDir * moveSpeed * Time.fixedDeltaTime;
     }
-
-
+    #endregion
 }
