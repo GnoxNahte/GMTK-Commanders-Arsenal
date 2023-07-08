@@ -25,7 +25,9 @@ public class EnemySpawnManager : MonoBehaviour
     public void ChangeSelectedEnemy(GameObject nextEnemyPrefab)
     {
         selectedEnemyPrefab = nextEnemyPrefab;
+
         enemyPreview.sprite = GetEnemySprite(selectedEnemyPrefab);
+        enemyPreview.transform.localScale = selectedEnemyPrefab.transform.localScale;
     }
     #endregion
 
@@ -65,6 +67,8 @@ public class EnemySpawnManager : MonoBehaviour
         Vector2 enemyLocation = cam.ScreenToWorldPoint(Input.mousePosition);
         enemyPreview.transform.position = enemyLocation;
 
+        enemyPreview.flipX = HeroAI.instance.transform.position.x < enemyPreview.transform.position.x;
+        print("A: " + HeroAI.instance.transform.position.x + "B: " + enemyPreview.transform.position.x);
         // Enemy prefab
         if (Input.GetMouseButtonDown(0))
         {
