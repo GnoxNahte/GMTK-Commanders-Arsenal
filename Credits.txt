@@ -1,0 +1,8 @@
+Credits:
+Game Developer (Mainly Programmer): GnoxNahte
+
+Assets used: 
+- Background (Grass, rocks, etc): Cainos - https://assetstore.unity.com/packages/2d/environments/pixel-art-top-down-basic-187605
+- Characters: 
+	- BattleMage - https://pimen.itch.io/fantasy-platformer-character
+	- Other characters - https://elthen.itch.io/
