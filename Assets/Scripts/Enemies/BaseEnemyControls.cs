@@ -45,7 +45,7 @@ public class BaseEnemyControls : MonoBehaviour
     // Update is called once per frame
     virtual protected void Update()
     {
-        sr.flipX = moveDir.x < 0;
+        sr.flipX = HeroAI.instance.transform.position.x < transform.position.x;
     }
 
     virtual protected void FixedUpdate()

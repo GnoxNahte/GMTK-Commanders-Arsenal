@@ -28,8 +28,8 @@ public class Cacodaemon : BaseEnemyControls
         // Simple follow 
         SetMoveDir(offset);
 
-        animator.SetBool(animId_IsAttacking, offset.sqrMagnitude < attackRange);
-        animator.SetBool(animId_IsChasing, offset.sqrMagnitude < chaseRange);
+        animator.SetBool(animId_IsAttacking, offset.sqrMagnitude < attackRange * attackRange);
+        animator.SetBool(animId_IsChasing, offset.sqrMagnitude < chaseRange * chaseRange);
     }
 
     private void OnDrawGizmosSelected()
